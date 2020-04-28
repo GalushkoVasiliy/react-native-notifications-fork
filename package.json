@@ -1,0 +1,144 @@
+{
+  "name": "react-native-notifications",
+  "version": "3.1.0",
+  "description": "Advanced Push Notifications (Silent, interactive notifications) for iOS & Android",
+  "author": "Lidan Hifi <lidan.hifi@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "react-component",
+    "react-native",
+    "react native",
+    "ios",
+    "push-notifications",
+    "push notifications",
+    "notifications",
+    "notification",
+    "react native notifications",
+    "pushkit",
+    "push-kit",
+    "actionable-notifications",
+    "interactive-notifications"
+  ],
+  "main": "lib/dist/index.js",
+  "typings": "lib/dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf ./lib/dist && tsc",
+    "prestart": "npm run build",
+    "pretest-js": "npm run build",
+    "pretest-unit-ios": "npm run build",
+    "pretest-unit-android": "npm run build",
+    "test": "node scripts/test",
+    "start": "node ./scripts/start",
+    "pretest-e2e-ios-release": "npm run build",
+    "clean": "node ./scripts/clean",
+    "test-e2e-ios": "node ./scripts/test-e2e --ios",
+    "test-e2e-ios-release": "node ./scripts/test-e2e --ios --release",
+    "test-unit-ios": "node ./scripts/test-unit --ios",
+    "test-unit-android": "node ./scripts/test-unit --android",
+    "test-js": "node ./scripts/test-js",
+    "xcode": "open example/ios/NotificationsExampleApp.xcodeproj",
+    "androidStudio": "open -a /Applications/Android\\ Studio.app ./example/android",
+    "prerelease": "npm run build",
+    "release": "node ./scripts/release",
+    "generate-changelog": "gren changelog",
+    "docusaurus": "npm start --prefix website"
+  },
+  "nativePackage": true,
+  "peerDependencies": {
+    "react": ">=0.14.5",
+    "react-native": ">=0.25.1"
+  },
+  "devDependencies": {
+    "@types/react": "16.x.x",
+    "@types/react-native": "0.57.7",
+    "@types/react-test-renderer": "16.x.x",
+    "@babel/plugin-proposal-export-default-from": "7.2.0",
+    "@babel/plugin-proposal-export-namespace-from": "7.2.0",
+    "@types/jest": "23.x.x",
+    "@types/lodash": "4.x.x",
+    "typescript": "3.2.2",
+    "babel-eslint": "9.0.0",
+    "tslint": "5.x.x",
+    "ts-mockito": "^2.3.1",
+    "mocha": "^2.5.3",
+    "shell-utils": "1.x.x",
+    "react-native": "0.60.5",
+    "react": "16.8.6",
+    "detox": "14.x.x",
+    "jsc-android": "236355.x.x",
+    "jest": "24.8.0",
+    "metro-react-native-babel-preset": "0.55.x",
+    "react-native-typescript-transformer": "1.2.12",
+    "github-release-notes": "0.17.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wix/react-native-notifications.git"
+  },
+  "homepage": "https://github.com/wix/react-native-notifications",
+  "bugs": {
+    "url": "https://github.com/wix/react-native-notifications/issues"
+  },
+  "detox": {
+    "test-runner": "jest",
+    "specs": "",
+    "configurations": {
+      "ios.none": {
+        "binaryPath": "playground/ios/DerivedData/playground/Build/Products/Debug-iphonesimulator/playground.app",
+        "type": "ios.none",
+        "name": "iPhone 11",
+        "session": {
+          "server": "ws://localhost:8099",
+          "sessionId": "playground"
+        }
+      },
+      "ios.sim.debug": {
+        "binaryPath": "example/ios/DerivedData/NotificationsExampleApp/Build/Products/Debug-iphonesimulator/NotificationsExampleApp.app",
+        "build": "RCT_NO_LAUNCH_PACKAGER=true xcodebuild build -scheme NotificationsExampleApp -project example/ios/NotificationsExampleApp.xcodeproj -sdk iphonesimulator -configuration Debug -derivedDataPath example/ios/DerivedData/NotificationsExampleApp ONLY_ACTIVE_ARCH=YES -quiet -UseModernBuildSystem=NO",
+        "type": "ios.simulator",
+        "name": "iPhone 11"
+      },
+      "ios.sim.release": {
+        "binaryPath": "example/ios/DerivedData/NotificationsExampleApp/Build/Products/Release-iphonesimulator/NotificationsExampleApp.app",
+        "build": "RCT_NO_LAUNCH_PACKAGER=true xcodebuild build -scheme NotificationsExampleApp_release -project example/ios/NotificationsExampleApp.xcodeproj -sdk iphonesimulator -configuration Release -derivedDataPath example/ios/DerivedData/NotificationsExampleApp ONLY_ACTIVE_ARCH=YES -quiet -UseModernBuildSystem=NO",
+        "type": "ios.simulator",
+        "name": "iPhone 11"
+      }
+    }
+  },
+  "jest": {
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "roots": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/lib/dist/"
+    ],
+    "collectCoverageFrom": [
+      "lib/dist/**/*.js",
+      "lib/src/**/*.js",
+      "integration/**/*.js",
+      "!lib/dist/index.js",
+      "!lib/dist/Notifications.js",
+      "!lib/dist/NotificationsIOS.js",
+      "!lib/dist/NotificationsAndroid.js",
+      "!lib/dist/adapters/**/*",
+      "!lib/dist/interfaces/**/*",
+      "!lib/dist/**/*.test.*",
+      "!integration/**/*.test.*",
+      "!integration/*.test.*"
+    ],
+    "resetMocks": true,
+    "resetModules": true,
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "html"
+    ]
+  }
+}
